@@ -7,7 +7,7 @@ const Header = () => {
             <Container>
             <Navbar.Brand href="#home">Starwar App</Navbar.Brand>
             <Nav className="me-auto">
-                <Form.Control type="text" placeholder="Search" style={{width: "500px"}} />
+                <Form.Control type="text" placeholder="Search" style={{width: "400px"}} />
             </Nav>
             </Container>
       </Navbar>
