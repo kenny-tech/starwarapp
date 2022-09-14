@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
-const Homepage = () => {
+const Home = () => {
     return (
         <React.Fragment>
             <Header />
@@ -23,4 +23,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage;
+export default Home;
