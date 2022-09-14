@@ -9,6 +9,7 @@ import Sidebar from './Sidebar';
 const Home = () => {
 
     const [people, setPeople] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getPeople();
@@ -19,8 +20,9 @@ const Home = () => {
             await axios.get('https://swapi.dev/api/people/')
             .then((response) => {
                 // console.log(response.data.results);
+                localStorage.setItem("people", JSON.stringify(response.data.results));
                 setPeople(response.data.results);
-                localStorage.setItem("people", response.data.results);
+                setLoading(false);
             })
             .catch((error) => {
                 console.log(error);
@@ -28,10 +30,6 @@ const Home = () => {
         } catch (error) {
             console.log(error);
         } 
-    }
-
-    const handleGetDetails = (name) =>{
-        console.log(name);
     }
 
     return (
@@ -47,17 +45,18 @@ const Home = () => {
                     <div style={{margin: '20px'}}>
                     <h3>Characters</h3>
                     <Card style={{ width: '50rem' }}>
-                            <ListGroup variant="flush">
+                            { loading ? <p className="pl-20">Loading...</p> : (<ListGroup variant="flush">
                                 {
                                     people.map(person => {
                                         return (
-                                            <Link to="/details">
+                                            <Link to="/details" state={{ name: person.name}}>
                                                 <ListGroup.Item>{person.name}</ListGroup.Item>
                                             </Link>
                                         )
                                     })
                                 }
-                            </ListGroup>
+                            </ListGroup>)}
+                            
                         </Card>
                     </div>
                 </Col>
