@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import axios from "axios";
 
 import Header from './Header';
@@ -19,6 +20,7 @@ const Home = () => {
             .then((response) => {
                 // console.log(response.data.results);
                 setPeople(response.data.results);
+                localStorage.setItem("people", response.data.results);
             })
             .catch((error) => {
                 console.log(error);
@@ -26,6 +28,10 @@ const Home = () => {
         } catch (error) {
             console.log(error);
         } 
+    }
+
+    const handleGetDetails = (name) =>{
+        console.log(name);
     }
 
     return (
@@ -41,15 +47,17 @@ const Home = () => {
                     <div style={{margin: '20px'}}>
                     <h3>Characters</h3>
                     <Card style={{ width: '50rem' }}>
-                        <ListGroup variant="flush">
-                            {
-                                people.map(person => {
-                                    return (
-                                        <ListGroup.Item>{person.name}</ListGroup.Item>
-                                    )
-                                })
-                            }
-                        </ListGroup>
+                            <ListGroup variant="flush">
+                                {
+                                    people.map(person => {
+                                        return (
+                                            <Link to="/details">
+                                                <ListGroup.Item>{person.name}</ListGroup.Item>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                            </ListGroup>
                         </Card>
                     </div>
                 </Col>
