@@ -32,6 +32,16 @@ const Home = () => {
         } 
     }
 
+    let filtering, filterPeople, filteredPeople;
+    filterPeople = localStorage.getItem('filtering');
+    if(filterPeople){
+        filtering = 1;
+        filteredPeople = JSON.parse(localStorage.getItem("filteredPeople"));
+    }else{
+        filtering = 0;
+        filteredPeople = JSON.parse(localStorage.getItem("people"));
+    }
+        
     return (
         <React.Fragment>
             <Header />
@@ -45,7 +55,17 @@ const Home = () => {
                     <div style={{margin: '20px'}}>
                     <h3>Characters</h3>
                     <Card style={{ width: '50rem' }}>
-                            { loading ? <p className="pl-20">Loading...</p> : (<ListGroup variant="flush">
+                            { filtering === 1 ? (<ListGroup variant="flush">
+                                {
+                                    filteredPeople.map(person => {
+                                        return (
+                                            <Link to="/details" state={{ name: person.name}}>
+                                                <ListGroup.Item>{person.name}</ListGroup.Item>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                            </ListGroup>) : (<ListGroup variant="flush">
                                 {
                                     people.map(person => {
                                         return (

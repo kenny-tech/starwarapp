@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { ListGroup } from 'react-bootstrap';
 import { Star, StarFill } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
 
@@ -31,7 +33,11 @@ const Sidebar = () => {
             {
                 favourites !== null? favourites.map(favourite => {
                     return (
-                        <p>{favourite} <span onClick={() => handleFavouriteClick(favourite)}>{favourite? <StarFill color="royalblue" size={15} />: <Star color="royalblue" size={15} />}</span></p>
+                        // <p>{favourite} <span onClick={() => handleFavouriteClick(favourite)}>{favourite? <StarFill color="royalblue" size={15} />: <Star color="royalblue" size={15} />}</span></p>
+                        
+                        <Link to="/details" state={{ name: favourite}}>
+                            <ListGroup.Item>{favourite} <span onClick={() => handleFavouriteClick(favourite)}>{favourite? <StarFill color="royalblue" size={15} />: <Star color="royalblue" size={15} />}</span></ListGroup.Item>
+                        </Link>
                     )
                 }) : null
             }
