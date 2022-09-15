@@ -1,10 +1,15 @@
 # To run the app
 
-Clone the project and run npm install in the project directory. 
+
+Clone the project and run:
+
+### `npm install`
+
 
 After this run:
 
 ### `npm start`
+
 
 This runs the app in the development mode.
 
