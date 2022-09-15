@@ -21,7 +21,6 @@ const Sidebar = () => {
             console.log(error);
         } 
     }
-
     
     return (
         <div style={{margin: '20px'}}>
